@@ -21,14 +21,6 @@ exports.up = function(knex) {
         .references('curli_id_in_curliQ')
         .onDelete('CASCADE')
         .onUpdate('CASCADE')
-      //not sure about the items and difference between sql fk\/ and pg fk/\
-    t.integer('curli_id')
-    .unsigned()
-    .notNullable()
-    .references('curli_id')
-    .inTable('curliQ')
-    .onDelete('CASCADE')
-    .onUpdate('CASCADE')
     t.string('step', 1256)
   })
   .createTable('curliQutters', t => {
