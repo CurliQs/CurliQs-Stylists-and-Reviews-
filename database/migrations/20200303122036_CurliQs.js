@@ -18,7 +18,9 @@ exports.up = function(knex) {
     t.increment('regimen_id')
     
     t.foreign('curli_id')
-    .references('Items.Curli_id_in_curliQ')
+        .references('curli_id_in_curliQ')
+        .onDelete('CASCADE')
+        .onUpdate('CASCADE')
       //not sure about the items and difference between sql fk\/ and pg fk/\
     t.integer('curli_id')
     .unsigned()
@@ -44,15 +46,9 @@ exports.up = function(knex) {
   .createTable('portfolio', t => {
       t.increment('portfolio_id')
       t.foreign('qutter_id')
-      .references('Items.qutter_id_in_curliQutters')
-        //not sure about the items and difference between sql fk\/ and pg fk/\
-      t.integer('qutter_id')
-      .unsigned()
-      .notNullable()
-      .references('qutter_id')
-      .inTable('curliQutters')
-      .onDelete('CASCADE')
-      .onUpdate('CASCADE')
+         .references('qutter_id_in_curliQutters')
+         .onDelete('CASCADE')
+        .onUpdate('CASCADE')
       //json for image url
       t.string('hair_type', 126)
       t.string('products', 1256)
@@ -61,29 +57,14 @@ exports.up = function(knex) {
       t.integer(review_id)
       t.string('review', 1256)
       t.string('rating', 126)
-
       t.foreign('curli_id')
-      .references('Items.Curli_id_in_curliQ')
-        //not sure about the items and difference between sql fk\/ and pg fk/\
-      t.integer('curli_id')
-      .unsigned()
-      .notNullable()
-      .references('curli_id')
-      .inTable('curliQ')
-      .onDelete('CASCADE')
-      .onUpdate('CASCADE')
-      t.string('step', 1256)
-
+        .references('curli_id_in_curliQ')
+        .onDelete('CASCADE')
+        .onUpdate('CASCADE')
       t.foreign('qutter_id')
-      .references('Items.qutter_id_in_curliQutters')
-        //not sure about the items and difference between sql fk\/ and pg fk/\
-      t.integer('qutter_id')
-      .unsigned()
-      .notNullable()
-      .references('qutter_id')
-      .inTable('curliQutters')
-      .onDelete('CASCADE')
-      .onUpdate('CASCADE')
+         .references('qutter_id_in_curliQutters')
+         .onDelete('CASCADE')
+        .onUpdate('CASCADE')
   })
 };
 
