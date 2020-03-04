@@ -6,10 +6,10 @@ const Qs = require("./Q-model");
 
 router.post("/register", (req, res) => {
 	let curliQ = req.body;
-	const hash = bcrypt.hashSync(customer.password, 12);
+	const hash = bcrypt.hashSync(curliQ.password, 12);
 	curliQ.password = hash;
 
-	Qs.add(customer)
+	Qs.add(curliQ)
 		.then(saved => {
 			res.status(201).json({ saved });
 		})
@@ -40,6 +40,14 @@ router.post("/login", (req, res) => {
 			res.status(500).json(error);
 		});
 });
+
+router.get("/", (req, res) => {
+	
+	Qs.find()
+		.then(customer => res.status(200).json(customer))
+		.catch(err => res.status(500).json(err));
+});
+
 
 const signToken = user => {
 	const payload = {
