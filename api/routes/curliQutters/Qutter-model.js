@@ -1,4 +1,11 @@
-const db = require('../../database/dbConfig')
+const db = require('../../../database/dbConfig')
+
+module.exports = {
+    getQutters,
+    getQutterId,
+    addQutter
+}
+
 
 function getQutters() {
     return db('curliQutters')
