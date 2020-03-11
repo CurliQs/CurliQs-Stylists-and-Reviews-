@@ -4,13 +4,14 @@ const jwt = require("jsonwebtoken");
 
 const Qs = require("./Q-model");
 
-router.post("/register", (req, res) => {
+router.post("/register", async (req, res) => {
 	let curliQ = req.body;
 	const hash = bcrypt.hashSync(curliQ.password, 12);
 	curliQ.password = hash;
-
-	Qs.add(curliQ)
+	// console.log(curliQ);
+	Qs.create(curliQ)
 		.then(saved => {
+			// console.log({ saved });
 			res.status(201).json({ saved });
 		})
 		.catch(err => {
@@ -21,7 +22,7 @@ router.post("/register", (req, res) => {
 router.post("/login", (req, res) => {
 	let { username, password } = req.body;
 
-	Qs.findBy({ username })
+	Qs.getByUsername({ username })
 		.first()
 		.then(user => {
 			if (user && bcrypt.compareSync(password, user.password)) {
@@ -42,12 +43,10 @@ router.post("/login", (req, res) => {
 });
 
 router.get("/", (req, res) => {
-	
-	Qs.find()
+	Qs.get()
 		.then(customer => res.status(200).json(customer))
 		.catch(err => res.status(500).json(err));
 });
-
 
 const signToken = user => {
 	const payload = {

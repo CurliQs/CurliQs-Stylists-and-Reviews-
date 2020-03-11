@@ -1,27 +1,53 @@
-const db = require('../../../database/dbConfig')
+const db = require("../../../database/dbConfig");
 
 module.exports = {
-    getQutters,
-    getQutterId,
-    addQutter
-}
+    get,
+    getById,
+    getByUsername,
+    create,
+    update,
+    remove
+};
+  
+function get(){
+    return db('curliQutter').select(
+		"curli_id",
+		"username",
+		"password",
+		"email",
+		"location",
+		"specialty"
+	);;
+};
 
+function getById(qutter_id) {
+    return db('curliQutter')
+        .where({ qutter_id })
+        .select('qutter_id', 'username', 'email', 'location','specialty')
+        .first();
+};
 
-function getQutters() {
-    return db('curliQutters')
-}
+function getByUsername(username){
+    return db('curliQutter')
+        .where({ username })
+        .first();
+};
 
-function getQutterId(id) {
-    return db('curlQutters')
-        .where({id})
-}
+async function create(user){
+    const [qutter_id] = await db('curliQutter').insert(user, 'qutter_id');
+    return getById(qutter_id);
+};
 
-function addQutter(qutter) {
-    return db('curliQutters')
-        .insert(qutter)
-        .into('curliQutters')
-        // .then( () => {
-        //     return db('curliQutters')
-        //         .where({qutter: qutter.username})
-        // })
-}
+async function update(qutter_id, updates){
+    await db('curliQutter')
+        .where({ qutter_id })
+        .update(updates);
+    return getById(qutter_id);
+};
+
+function remove (qutter_id){
+    return db('curliQutter')
+        .where({ qutter_id })
+        .delete()
+        .returning('qutter_id');
+};
