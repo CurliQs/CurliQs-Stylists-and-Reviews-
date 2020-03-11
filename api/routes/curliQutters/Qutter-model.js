@@ -17,11 +17,11 @@ function getQutterId(id) {
 }
 
 function addQutter(qutter) {
-    return db
+    return db('curliQutters')
         .insert(qutter)
         .into('curliQutters')
-        .then( () => {
-            return db('curliQutters')
-                .where({qutter: qutter.username})
-        })
+        // .then( () => {
+        //     return db('curliQutters')
+        //         .where({qutter: qutter.username})
+        // })
 }
