@@ -1,7 +1,6 @@
 import React from 'react';
-import './App.css';
 import { Route, Switch } from "react-router-dom";
-import LandingPage from './components/LandingPage'
+import LandingPage from './components/External Pages/Marketing'
 import Registration from './components/qRegistration';
 import QutterReg from './components/qutterRegistration'
 
