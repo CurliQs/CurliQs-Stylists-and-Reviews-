@@ -1,13 +1,17 @@
 import React from 'react';
-import SignIn from './components/SignIn'
-import SignUp from './components/SignUp'
-import Marketing from './components/External Pages/Marketing'
+import { Route, Switch } from "react-router-dom";
+import LandingPage from './components/External Pages/Marketing'
+import Registration from './components/qRegistration';
+import QutterReg from './components/qutterRegistration'
 
 function App() {
   return (
     <div className="App">
-    <SignIn />
-    
+    <Switch>
+      <Route exact path="/"><LandingPage /></Route>
+    <Route exact path="/register"><Registration/></Route>
+    <Route exact path="/qutregister"><QutterReg/></Route>
+    </Switch>
     </div>
   );
 }
