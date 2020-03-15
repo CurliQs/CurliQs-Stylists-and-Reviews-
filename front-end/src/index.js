@@ -53,11 +53,7 @@ const theme = createMuiTheme({
         ].join(','),
       }
 })
-const darkTheme = createMuiTheme({
-    palette: {
-        type: 'dark',
-    }
-})
+
 ReactDOM.render(
     <MuiThemeProvider theme={theme} dark={darkTheme}>
     <App />
