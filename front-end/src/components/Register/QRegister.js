@@ -1,13 +1,39 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+//loginc import
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
+import registerUser from "../../redux/curliQs/register/register.actions";
+import { selectUser } from "../../redux/curliQs/register/register.selectors";
+//styling import
 import { Avatar, Button, CssBaseline, TextField, FormControlLabel, Checkbox, Link, Paper, Box, Grid, Typography } from '@material-ui/core';
-import useStylesReg from '../Styling/RegForm'
-import Copyright from '../Styling/Copyright'
-import Q from '../img/tQ.png'
+import useStylesReg from '../../Styling/RegForm'
+import Copyright from '../../Styling/Copyright'
+import Q from '../../img/tQ.png'
 
 
 export default function SignInSide() {
   const classes = useStylesReg();
+  const [q, setQ] = useState({
+    username: "",
+    password: "",
+    email: "",
+    location: "",
+    hair_type: ""})
 
+    const handleSubmit = e => {
+      e.preventDefault()
+      setQ({
+        username: "",
+        password: "",
+        email: "",
+        location: "",
+        hair_type: ""
+      })
+    }
+
+    const handleChange = e => {
+
+    }
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
@@ -72,10 +98,7 @@ export default function SignInSide() {
               autoFocus
             />
             {/* want to make this a drop down of options clicking stylist can select more than one type */}
-            <FormControlLabel
-              control={<Checkbox value="stylist" color="#36CED6" />}
-              label="Stylist?"
-            />
+         
             <Button
               type="submit"
               fullWidth
@@ -101,3 +124,4 @@ export default function SignInSide() {
     </Grid>
   );
 }
+
