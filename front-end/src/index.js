@@ -55,7 +55,6 @@ const theme = createMuiTheme({
             'PT Serif', //sub headers
             'Josefin Sans', // sub header non san
             'Open Sans Condensed', // body
-          'Roboto',
            'serif',
           'sans-serif',
           '"Apple Color Emoji"',
@@ -64,8 +63,6 @@ const theme = createMuiTheme({
         ].join(','),
       }
 })
-
-
 const rootElement = document.getElementById("root");
 
 ReactDOM.render(
