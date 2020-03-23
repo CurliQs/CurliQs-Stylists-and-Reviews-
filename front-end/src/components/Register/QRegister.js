@@ -20,6 +20,41 @@ export default function SignInSide() {
     location: "",
     hair_type: ""})
 
+    const hairType = [
+      {
+        value: '2a',
+        label: '2a',
+      },
+      {
+        value: '2b',
+        label: '2b',
+      },
+      {
+        value: '2c',
+        label: '2c',
+      },
+      {
+        value: '3a',
+        label: '3a',
+      },
+      {
+        value: '3b',
+        label: '3c',
+      },
+      {
+        value: '4a',
+        label: '4a',
+      },
+      {
+        value: '4b',
+        label: '4b',
+      },
+      {
+        value: '4c',
+        label: '4c',
+      },
+    ]
+
     const handleSubmit = e => {
       e.preventDefault()
       setQ({
@@ -32,7 +67,7 @@ export default function SignInSide() {
     }
 
     const handleChange = e => {
-
+      setQ({ ...q, [e.target.name]: e.target.value })
     }
   return (
     <Grid container component="main" className={classes.root}>
@@ -45,7 +80,7 @@ export default function SignInSide() {
           <Typography component="h1">
             CurliQ's Registration
           </Typography>
-          <form className={classes.form} noValidate>
+          <form className={classes.form} onSubmit={handleSubmit} noValidate>
             <TextField
               variant="outlined"
               margin="normal"
@@ -55,6 +90,8 @@ export default function SignInSide() {
               label="User Name"
               name="username"
               autoFocus
+              onChange={handleChange}
+              value={username}
             />
             <TextField
               variant="outlined"
@@ -65,6 +102,8 @@ export default function SignInSide() {
               label="Password"
               name="password"
               autoFocus
+              onChange={handleChange}
+              value={password}
             />
             <TextField
               variant="outlined"
@@ -74,6 +113,8 @@ export default function SignInSide() {
               id="email"
               label="Email"
               name="email"
+              onChange={handleChange}
+              value={email}
               autoFocus
             />
             <TextField
@@ -85,6 +126,8 @@ export default function SignInSide() {
               label="Location"
               type="location"
               id="location"
+              onChange={handleChange}
+              value={location}
             />
             {/* not sure about a 50 state drop down */}
             <TextField
@@ -94,10 +137,19 @@ export default function SignInSide() {
               fullWidth
               id="hairtype"
               label="Hair Type"
-              name="hairtype"
+              name="hair_type"
               autoFocus
-            />
-            {/* want to make this a drop down of options clicking stylist can select more than one type */}
+              onChange={handleChange}
+              value={hair_type}
+              helperText="Please Choose your Overall Hair Type">
+                {hairType.map(select => (
+                  <MenuItem key={select.value} value={select.value}>
+                    {select.label}
+                  </MenuItem>
+                ))}
+              </TextField>
+            
+           
          
             <Button
               type="submit"
