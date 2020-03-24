@@ -5,7 +5,7 @@ import { createStructuredSelector } from "reselect";
 import registerUser from "../../redux/curliQs/register/register.actions";
 import { selectUser } from "../../redux/curliQs/register/register.selectors";
 //styling import
-import { Avatar, Button, CssBaseline, TextField, FormControlLabel, Checkbox, Link, Paper, Box, Grid, Typography } from '@material-ui/core';
+import { Avatar, Button, CssBaseline, TextField, FormControlLabel, Checkbox, Link, Paper, Box, Grid, Typography, MenuItem } from '@material-ui/core';
 import useStylesReg from '../../Styling/RegForm'
 import Copyright from '../../Styling/Copyright'
 import Q from '../../img/tQ.png'
@@ -20,7 +20,7 @@ export default function SignInSide() {
     location: "",
     hair_type: ""})
 
-    const hairType = [
+    const pattern = [
       {
         value: '2a',
         label: '2a',
@@ -54,7 +54,209 @@ export default function SignInSide() {
         label: '4c',
       },
     ]
-
+    const states = [
+      {
+        object: 'Alabama',
+        value: 'Alabama'
+      },
+      {
+      object: 'Alaska',
+      value: 'Alaska'
+       },
+    {
+    object: 'Arizona',
+    value: 'Arizona'
+    },
+    {
+    object: 'Arkansas',
+    value: 'Arkansas'
+    },
+    {
+      object: 'California',
+      value: 'California'
+    },
+    {
+      object: 'Colorado',
+      value: 'Colorado'
+    },
+    {
+      object: 'Connecticut',
+      value: 'Connecticut'
+    },
+    {
+      object: 'Delaware',
+      value: 'Delaware'
+    },
+    {
+      object: 'Georgia',
+      value: 'Georgia'
+    },
+    {
+      object: 'Hawaii',
+      value: 'Hawaii'
+    },
+    {
+      object: 'Idaho',
+      value: 'Idaho'
+    },
+    {
+      object: 'Illinois',
+      value: 'Illinois'
+    },
+    {
+      object: 'Indiana',
+      value: 'Indiana'
+    },
+    {
+      object: 'Iowa',
+      value: 'Iowa'
+    },
+    {
+      object: 'Kansas',
+      value: 'Kansas'
+    },
+    {
+      object: 'Kentucky',
+      value: 'Kentucky'
+    },
+    {
+      object: 'Louisiana',
+      value: 'Louisiana'
+    },
+    {
+      object: 'Maine',
+      value: 'Maine'
+    },
+    {
+      object: 'Maryland',
+      value: 'Maryland'
+    },
+    {
+      object: 'Massachusets',
+      value: 'Massachusets'
+    },
+    {
+      object: 'Michigan',
+      value: 'Michigan'
+    },
+    {
+      object: 'Minnesota',
+      value: 'Minnesota'
+    },
+    {
+      object: 'Mississippi',
+      value: 'Mississippi'
+    },
+    {
+      object: 'Misouri',
+      value: 'Misouri'
+    },
+    {
+      object: 'Montana',
+      value: 'Montana'
+    },
+    {
+      object: 'Nebraska',
+      value: 'Nebraska'
+    },
+    {
+      object: 'Nevada',
+      value: 'Nevada'
+    },
+    {
+      object: 'New Hamphire',
+      value: 'New Hampshire'
+    },
+    {
+      object: 'New Jersey',
+      value: 'New Jersey'
+    },
+    {
+      object: 'New Mexico',
+      value: 'New Mexico'
+    },
+    {
+      object: 'New York',
+      value: 'New York'
+    },
+    {
+      object: 'North Carolina',
+      value: 'NorthCarolina'
+    },
+    {
+      object: 'North Dakota',
+      value: 'North Dakota'
+    },
+    {
+      object: 'Ohio',
+      value: 'Ohio'
+    },
+    {
+      object: 'Oklahoma',
+      value: 'Oklahoma'
+    },
+    {
+      object: 'Oregon',
+      value: 'Oregon'
+    },
+    {
+      object: 'Pennsylvania',
+      value: 'Pensylvania'
+    },
+    {
+      object: 'Rhode Island',
+      value: 'Rhode Island'
+    },
+    {
+      object: 'South Carolina',
+      value: 'South Carolina'
+    },
+    {
+      object: 'South Dakota',
+      value: 'South Dakota'
+    },
+    {
+      object: 'Tennessee',
+      value: 'Tennessee'
+    },
+    {
+      object: 'Texas',
+      value: 'Texas'
+    },
+    {
+      object: 'Utah',
+      value: 'Utah'
+    },
+    {
+      object: 'Vermont',
+      value: 'Vermont'
+    },
+    {
+      object: 'Virginia',
+      value: 'Virginia'
+    },
+    {
+      object: 'Washington',
+      value: 'Washington'
+    },
+    {
+      object: 'Washington DC',
+      value: 'Washington DC'
+    },
+    {
+      object: 'West Virginia',
+      value: 'West Virginia'
+    },
+    {
+      object: 'Wisconsin',
+      value: 'Wisconsin'
+    },
+    {
+      object: 'Wyoming',
+      value: 'Wyoming'
+    }
+    ]
+ 
     const handleSubmit = e => {
       e.preventDefault()
       setQ({
@@ -91,7 +293,7 @@ export default function SignInSide() {
               name="username"
               autoFocus
               onChange={handleChange}
-              value={username}
+              value={q.username}
             />
             <TextField
               variant="outlined"
@@ -103,7 +305,7 @@ export default function SignInSide() {
               name="password"
               autoFocus
               onChange={handleChange}
-              value={password}
+              value={q.password}
             />
             <TextField
               variant="outlined"
@@ -114,7 +316,7 @@ export default function SignInSide() {
               label="Email"
               name="email"
               onChange={handleChange}
-              value={email}
+              value={q.email}
               autoFocus
             />
             <TextField
@@ -127,22 +329,41 @@ export default function SignInSide() {
               type="location"
               id="location"
               onChange={handleChange}
-              value={location}
+              value={q.location}
             />
-            {/* not sure about a 50 state drop down */}
+            {/* <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="location"
+              label="Location"
+              type="location"
+              id="location"
+              onChange={handleChange}
+              value={location}
+              helperText="Choose your State">
+                {states.map(place => (
+                  <MenuItem key={place.value} value={place.value}>
+                    {place.label}
+                  </MenuItem>
+                ))}
+              </TextField> */}
+            
             <TextField
               variant="outlined"
               margin="normal"
               required
               fullWidth
-              id="hairtype"
-              label="Hair Type"
-              name="hair_type"
+              select
               autoFocus
+              id="hair_type"
+              name="hair_type"
+              label="Hair Type"
               onChange={handleChange}
-              value={hair_type}
-              helperText="Please Choose your Overall Hair Type">
-                {hairType.map(select => (
+              value={q.hair_type}
+             >
+                {pattern.map(select => (
                   <MenuItem key={select.value} value={select.value}>
                     {select.label}
                   </MenuItem>
