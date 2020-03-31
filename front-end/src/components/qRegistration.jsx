@@ -17,15 +17,6 @@ class Registration extends React.Component {
 			hair_type: ""
 		};
 
-		// const stylist = 1
-		// const client = 2
-	}
-
-	stylist = 1;
-	customer = 2;
-
-	componentDidUpdate() {
-		// this.props.welcome()
 	}
 
 	handleSubmit = async e => {
