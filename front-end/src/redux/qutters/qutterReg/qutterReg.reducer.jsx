@@ -23,7 +23,7 @@ const registerReducer = (state = INITIAL_STATE, action) => {
 				...state,
 				addingQutter: false,
 				addedQutter: true,
-				user: action.payload.qutter,
+				qutter: action.payload.qutter,
 				error: ""
 			};
 		case qutterRegTypes.QUTTER_REGISTER_FAIL:
