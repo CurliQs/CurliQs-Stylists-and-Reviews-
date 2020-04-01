@@ -48,6 +48,30 @@ router.get("/", (req, res) => {
 		.catch(err => res.status(500).json(err));
 });
 
+router.get("/:id", (req, res) => {
+	let { id } = req.params;
+
+	Qs.getById(id)
+		.then(customer => res.status(200).json(customer))
+		.catch(err => res.status(500).json(err));
+});
+
+router.put("/:id", (req, res) => {
+	let { id } = req.params;
+	let update = req.body;
+	Qs.update(id, update)
+		.then(user => res.status(201).json(user))
+		.catch(err => res.status(500).json(err));
+});
+
+router.delete("/:id", (req, res) => {
+	let { id } = req.params;
+	Qs.remove(id)
+		.then(user => res.status(201).json(user))
+		.catch(err => res.status(500).json(err));
+});
+
+
 const signToken = user => {
 	const payload = {
 		username: user.username

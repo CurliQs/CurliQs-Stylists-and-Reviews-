@@ -45,10 +45,10 @@ async function update(curli_id, updates){
     return getById(curli_id);
 };
 
-function remove (curli_id){
-    return db('curliQ')
+async function remove (curli_id){
+    await db('curliQ')
         .where({ curli_id })
         .delete()
-        .returning('curli_id');
+        return get();
 };
 
