@@ -26,11 +26,6 @@ function getReviewById(review_id) {
 		.first();
 }
 
-// function getByUsername(username) {
-// 	return db("curliQutter")
-// 		.where({ username })
-// 		.first();
-// }
 
 async function createReview(review) {
 	const [review_id] = await db("product_review").insert(review, "review_id");

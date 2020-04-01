@@ -3,6 +3,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 const Qs = require("./Q-model");
+const Regimen = require("./regimen-model");
 
 router.post("/register", async (req, res) => {
 	let curliQ = req.body;
@@ -71,6 +72,36 @@ router.delete("/:id", (req, res) => {
 		.catch(err => res.status(500).json(err));
 });
 
+router.get("/:id/regimen", (req, res) => {
+	let { id } = req.params;
+	Regimen.getRegimen(id)
+		.then(regimen => res.status(200).json(regimen))
+		.catch(err => res.status(500).json(err));
+});
+
+router.post("/:curli_id/regimen", (req, res) => {
+	let { curli_id } = req.params;
+	let regimen = req.body;
+	let data = { ...regimen, curli_id };
+	Regimen.createRegimen(data)
+		.then(regimen => res.status(201).json(regimen))
+		.catch(err => res.status(500).json(err));
+});
+
+router.put("/:id/regimen", (req, res) => {
+	let { id } = req.params;
+	let updates = req.body;
+	Regimen.updateRegimen(id, updates)
+		.then(regimen => res.status(201).json(regimen))
+		.catch(err => res.status(500).json(err));
+});
+
+router.delete("/:id/regimen", (req, res) => {
+	let { id } = req.params;
+	Regimen.removeRegimen(id)
+		.then(user => res.status(201).json(user))
+		.catch(err => res.status(500).json(err));
+});
 
 const signToken = user => {
 	const payload = {
