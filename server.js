@@ -13,10 +13,13 @@ server.use(express.static(path.join(__dirname, "front-end/build")));
 const curlyQRouter = require("./api/routes/curliQ/Q-router");
 const qutterRouter = require("./api/routes/curliQutters/Qutter-router");
 const reviewRouter = require('./api/routes/productReview/review-router')
+const regimenRouter = require('./api/routes/regimen/regimen-router')
+
 
 server.use("/curliq", curlyQRouter);
 server.use("/qutter", qutterRouter);
 server.use("/reviews", reviewRouter);
+server.use("/curliq/:id/regimen", regimenRouter);
 
 server.get("/", (req, res) => {
 	res.status(200).json({ status: "I'm alive and on fire :fireball:" });
