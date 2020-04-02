@@ -13,6 +13,6 @@ const store = createStore(
 	composeEnhancers(applyMiddleware(...middlewares))
 );
 
-// store.dispatch(getAPI())
+
 
 export default store;
