@@ -1,12 +1,39 @@
-import React from 'react';
-import { Avatar, Button, CssBaseline, TextField, FormControlLabel, Checkbox, Link, Paper, Box, Grid, Typography } from '@material-ui/core';
-import useStylesSides from '../Styling/SideForm'
-import Copyright from '../Styling/Copyright'
-import Q from '../img/oQ.png'
-
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import {
+  Avatar,
+  Button,
+  CssBaseline,
+  TextField,
+  FormControlLabel,
+  Checkbox,
+  Paper,
+  Box,
+  Grid,
+  Typography
+} from "@material-ui/core";
+import useStylesSides from "../Styling/SideForm";
+import Copyright from "../Styling/Copyright";
+import Q from "../img/oQ.png";
 
 export default function SignInSide() {
   const classes = useStylesSides();
+  const [inputs, setInputs] = useState({
+    email: "",
+    password: "",
+    remember: false
+  });
+
+  const handleChanges = e => {
+    if (e.target.name === "remember") {
+      setInputs({ ...inputs, [e.target.name]: !inputs.remember });
+    } else {
+      setInputs({
+        ...inputs,
+        [e.target.name]: e.target.value
+      });
+    }
+  };
 
   return (
     <Grid container component="main" className={classes.root}>
@@ -24,11 +51,13 @@ export default function SignInSide() {
               margin="normal"
               required
               fullWidth
-              id="username"
-              label="Username"
-              name="username"
-              autoComplete="username"
+              id="email"
+              label="Email"
+              name="email"
+              value={inputs.email}
+              autoComplete="email"
               autoFocus
+              onChange={handleChanges}
             />
             <TextField
               variant="outlined"
@@ -36,15 +65,23 @@ export default function SignInSide() {
               required
               fullWidth
               name="password"
+              value={inputs.password}
               label="Password"
               type="password"
               id="password"
               autoComplete="current-password"
+              onChange={handleChanges}
             />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="#36CED6" />}
+            {/* <FormControlLabel
+              control={
+                <Checkbox
+                  name="remember"
+                  color="#36CED6"
+                  onChange={handleChanges}
+                />
+              }
               label="Remember me"
-            />
+            /> */}
             <Button
               type="submit"
               fullWidth
@@ -55,13 +92,14 @@ export default function SignInSide() {
               Sign In
             </Button>
             <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2" color="#36CED6">
+              {/* <Grid item xs>
+                <Link to="/"
+                variant="body2" color="#36CED6">
                   Forgot password?
                 </Link>
-              </Grid>
-              <Grid item>
-                <Link href="#" variant="body2" color="#36CED6">
+              </Grid> */}
+              <Grid item xs>
+                <Link to="/register" variant="body2" color="#36CED6">
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
