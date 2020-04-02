@@ -35,7 +35,7 @@ export default function ButtonAppBar() {
             color="inherit"
             aria-label="menu"
           >
-            <img src="Q" />
+            <img style={{ height: "2rem", width: "2rem" }} src={Q} />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
             Curli~Q's Styles'n'Reviews
