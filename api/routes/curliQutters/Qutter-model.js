@@ -3,7 +3,7 @@ const db = require("../../../database/dbConfig");
 module.exports = {
     get,
     getById,
-    getByUsername,
+    getByEmail,
     create,
     update,
     remove
@@ -17,7 +17,7 @@ function get(){
 		"email",
 		"location",
 		"specialty"
-	);;
+	);
 };
 
 function getById(qutter_id) {
@@ -27,9 +27,10 @@ function getById(qutter_id) {
         .first();
 };
 
-function getByUsername(username){
+function getByEmail(email){
     return db('curliQutter')
-        .where({ username })
+        .where({ email })
+        .select('qutter_id', 'username', 'email', 'location','specialty', 'password')
         .first();
 };
 

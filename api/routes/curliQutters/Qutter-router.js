@@ -22,9 +22,9 @@ router.post("/register", async (req, res) => {
 });
 
 router.post("/login", (req, res) => {
-	let { username, password } = req.body;
+	let { email, password } = req.body;
 
-	Qutters.getByUsername({ username })
+	Qutters.getByEmail(email)
 		.first()
 		.then(user => {
 			if (user && bcrypt.compareSync(password, user.password)) {

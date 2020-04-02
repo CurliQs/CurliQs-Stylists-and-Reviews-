@@ -3,7 +3,7 @@ const db = require("../../../database/dbConfig");
 module.exports = {
     get,
     getById,
-    getByUsername,
+    getByEmail,
     create,
     update,
     remove
@@ -27,9 +27,10 @@ function getById(curli_id) {
         .first();
 };
 
-function getByUsername(username){
+function getByEmail(email){
     return db('curliQ')
-        .where({ username })
+        .where({ email })
+        .select('curli_id', 'username', 'email', 'location','hair_type','password')
         .first();
 };
 

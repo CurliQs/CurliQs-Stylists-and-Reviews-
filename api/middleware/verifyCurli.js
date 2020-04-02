@@ -1,9 +1,9 @@
 const Curlis = require("../routes/curliQ/Q-model");
 
 module.exports = (req, res, next) => {
-	const {username} = req.body
+	const {email} = req.body
 
-	Curlis.getByUsername(username)
+	Curlis.getByEmail(email)
 		.then(curli => {
 			if (!curli) {
 				res

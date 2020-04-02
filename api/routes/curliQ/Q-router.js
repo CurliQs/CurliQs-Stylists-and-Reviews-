@@ -32,11 +32,12 @@ router.post("/register", verifyCurliRegister, async (req, res) => {
 });
 
 router.post("/login", verifyCurli, (req, res) => {
-	let { username, password } = req.body;
+	let { email, password } = req.body;
 
-	Qs.getByUsername({ username })
+	Qs.getByEmail(email)
 		.first()
 		.then(user => {
+			console.log(user)
 			if (user && bcrypt.compareSync(password, user.password)) {
 				const token = signToken(user);
 
