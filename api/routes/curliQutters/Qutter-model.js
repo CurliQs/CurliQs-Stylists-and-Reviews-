@@ -11,7 +11,7 @@ module.exports = {
   
 function get(){
     return db('curliQutter').select(
-		"curli_id",
+		"qutter_id",
 		"username",
 		"password",
 		"email",
@@ -45,9 +45,9 @@ async function update(qutter_id, updates){
     return getById(qutter_id);
 };
 
-function remove (qutter_id){
-    return db('curliQutter')
+async function remove (qutter_id){
+    await db('curliQutter')
         .where({ qutter_id })
         .delete()
-        .returning('qutter_id');
+        return get();
 };
