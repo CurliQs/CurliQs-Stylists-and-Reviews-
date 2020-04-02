@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import {
   Avatar,
   Button,
@@ -7,7 +8,6 @@ import {
   TextField,
   FormControlLabel,
   Checkbox,
-  Link,
   CardMedia,
   Card,
   Grid,
@@ -115,9 +115,11 @@ const Marketing = () => {
                     <li> They know your curl type</li>
                     <li> They have products for you to use</li>
                   </Typography>
-                  <Button variant="contained" color="secondary">
-                    Become a Curli Sylist
-                  </Button>
+                  <Link to="/qutregister">
+                    <Button variant="contained" color="secondary">
+                      Become a Curli Stylist
+                    </Button>
+                  </Link>
                 </CardContent>
               </Card>
             </Grid>
@@ -125,16 +127,19 @@ const Marketing = () => {
               <Card>
                 <CardContent className={classes.cardContent}>
                   <Typography gutterBottom variant="h5" component="h2">
-                    Become a Culi~Q
+                    Become a Curli~Q
                   </Typography>
+
                   <Typography>
                     <li>Care for your hair</li>
                     <li>Share the products that are working</li>
                     <li>Save products to try next time</li>
                   </Typography>
-                  <Button variant="contained" color="primary">
-                    Become a Curli~Q
-                  </Button>
+                  <Link to="/register">
+                    <Button variant="contained" color="primary">
+                      Become a Curli~Q
+                    </Button>
+                  </Link>
                 </CardContent>
               </Card>
             </Grid>
