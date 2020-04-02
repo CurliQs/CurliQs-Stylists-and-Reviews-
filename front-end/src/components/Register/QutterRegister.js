@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 //loginc import
-import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import registerUser from "../../redux/curliQs/register/register.actions";
@@ -24,7 +23,7 @@ import useStylesReg from "../../Styling/RegForm";
 import Copyright from "../../Styling/Copyright";
 import Q from "../../img/tQ.png";
 
-const QRegister = props => {
+export default function SignInSide() {
   const classes = useStylesReg();
   const [q, setQ] = useState({
     username: "",
@@ -33,8 +32,6 @@ const QRegister = props => {
     location: "",
     hair_type: ""
   });
-
-  const { push } = useHistory();
 
   const pattern = [
     {
@@ -273,10 +270,8 @@ const QRegister = props => {
     }
   ];
 
-  const handleSubmit = async e => {
+  const handleSubmit = e => {
     e.preventDefault();
-    props.newUser(q);
-
     setQ({
       username: "",
       password: "",
@@ -284,8 +279,6 @@ const QRegister = props => {
       location: "",
       hair_type: ""
     });
-
-    push("/");
   };
 
   const handleChange = e => {
@@ -413,10 +406,4 @@ const QRegister = props => {
       </Grid>
     </Grid>
   );
-};
-
-const mapDispatchToProps = dispatch => ({
-  newUser: user => dispatch(registerUser(user))
-});
-
-export default connect(null, mapDispatchToProps)(QRegister);
+}
