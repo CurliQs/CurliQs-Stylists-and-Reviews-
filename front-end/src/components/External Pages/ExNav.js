@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import {
   AppBar,
@@ -29,17 +29,21 @@ export default function ButtonAppBar() {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="menu"
-          >
-            <img style={{ height: "2rem", width: "2rem" }} src={Q} />
-          </IconButton>
-          <Typography variant="h6" className={classes.title}>
-            Curli~Q's Styles'n'Reviews
-          </Typography>
+          <Link to="/">
+            <IconButton
+              edge="start"
+              className={classes.menuButton}
+              color="inherit"
+              aria-label="menu"
+            >
+              <img style={{ height: "2rem", width: "2rem" }} src={Q} />
+            </IconButton>
+          </Link>
+          <Link to="/">
+            <Typography variant="h6" className={classes.title}>
+              Curli~Q's Styles'n'Reviews
+            </Typography>
+          </Link>
           <NavLink to="/signin">
             <Button color="inherit">Signin</Button>
           </NavLink>

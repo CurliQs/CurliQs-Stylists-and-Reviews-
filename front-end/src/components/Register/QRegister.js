@@ -1,15 +1,27 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 //loginc import
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import registerUser from "../../redux/curliQs/register/register.actions";
 import { selectUser } from "../../redux/curliQs/register/register.selectors";
 //styling import
-import { Avatar, Button, CssBaseline, TextField, FormControlLabel, Checkbox, Link, Paper, Box, Grid, Typography, MenuItem } from '@material-ui/core';
-import useStylesReg from '../../Styling/RegForm'
-import Copyright from '../../Styling/Copyright'
-import Q from '../../img/tQ.png'
-
+import {
+  Avatar,
+  Button,
+  CssBaseline,
+  TextField,
+  FormControlLabel,
+  Checkbox,
+  Link,
+  Paper,
+  Box,
+  Grid,
+  Typography,
+  MenuItem
+} from "@material-ui/core";
+import useStylesReg from "../../Styling/RegForm";
+import Copyright from "../../Styling/Copyright";
+import Q from "../../img/tQ.png";
 
 export default function SignInSide() {
   const classes = useStylesReg();
@@ -18,270 +30,268 @@ export default function SignInSide() {
     password: "",
     email: "",
     location: "",
-    hair_type: ""})
+    hair_type: ""
+  });
 
-    const pattern = [
-      {
-        value: '2a',
-        label: '2a',
-      },
-      {
-        value: '2b',
-        label: '2b',
-      },
-      {
-        value: '2c',
-        label: '2c',
-      },
-      {
-        value: '3a',
-        label: '3a',
-      },
-      {
-        value: '3b',
-        label: '3c',
-      },
-      {
-        value: '4a',
-        label: '4a',
-      },
-      {
-        value: '4b',
-        label: '4b',
-      },
-      {
-        value: '4c',
-        label: '4c',
-      },
-    ]
-    const states = [
-      {
-        object: 'Alabama',
-        value: 'Alabama'
-      },
-      {
-      object: 'Alaska',
-      value: 'Alaska'
-       },
+  const pattern = [
     {
-    object: 'Arizona',
-    value: 'Arizona'
+      value: "2a",
+      label: "2a"
     },
     {
-    object: 'Arkansas',
-    value: 'Arkansas'
+      value: "2b",
+      label: "2b"
     },
     {
-      object: 'California',
-      value: 'California'
+      value: "2c",
+      label: "2c"
     },
     {
-      object: 'Colorado',
-      value: 'Colorado'
+      value: "3a",
+      label: "3a"
     },
     {
-      object: 'Connecticut',
-      value: 'Connecticut'
+      value: "3b",
+      label: "3c"
     },
     {
-      object: 'Delaware',
-      value: 'Delaware'
+      value: "4a",
+      label: "4a"
     },
     {
-      object: 'Georgia',
-      value: 'Georgia'
+      value: "4b",
+      label: "4b"
     },
     {
-      object: 'Hawaii',
-      value: 'Hawaii'
-    },
-    {
-      object: 'Idaho',
-      value: 'Idaho'
-    },
-    {
-      object: 'Illinois',
-      value: 'Illinois'
-    },
-    {
-      object: 'Indiana',
-      value: 'Indiana'
-    },
-    {
-      object: 'Iowa',
-      value: 'Iowa'
-    },
-    {
-      object: 'Kansas',
-      value: 'Kansas'
-    },
-    {
-      object: 'Kentucky',
-      value: 'Kentucky'
-    },
-    {
-      object: 'Louisiana',
-      value: 'Louisiana'
-    },
-    {
-      object: 'Maine',
-      value: 'Maine'
-    },
-    {
-      object: 'Maryland',
-      value: 'Maryland'
-    },
-    {
-      object: 'Massachusets',
-      value: 'Massachusets'
-    },
-    {
-      object: 'Michigan',
-      value: 'Michigan'
-    },
-    {
-      object: 'Minnesota',
-      value: 'Minnesota'
-    },
-    {
-      object: 'Mississippi',
-      value: 'Mississippi'
-    },
-    {
-      object: 'Misouri',
-      value: 'Misouri'
-    },
-    {
-      object: 'Montana',
-      value: 'Montana'
-    },
-    {
-      object: 'Nebraska',
-      value: 'Nebraska'
-    },
-    {
-      object: 'Nevada',
-      value: 'Nevada'
-    },
-    {
-      object: 'New Hamphire',
-      value: 'New Hampshire'
-    },
-    {
-      object: 'New Jersey',
-      value: 'New Jersey'
-    },
-    {
-      object: 'New Mexico',
-      value: 'New Mexico'
-    },
-    {
-      object: 'New York',
-      value: 'New York'
-    },
-    {
-      object: 'North Carolina',
-      value: 'NorthCarolina'
-    },
-    {
-      object: 'North Dakota',
-      value: 'North Dakota'
-    },
-    {
-      object: 'Ohio',
-      value: 'Ohio'
-    },
-    {
-      object: 'Oklahoma',
-      value: 'Oklahoma'
-    },
-    {
-      object: 'Oregon',
-      value: 'Oregon'
-    },
-    {
-      object: 'Pennsylvania',
-      value: 'Pensylvania'
-    },
-    {
-      object: 'Rhode Island',
-      value: 'Rhode Island'
-    },
-    {
-      object: 'South Carolina',
-      value: 'South Carolina'
-    },
-    {
-      object: 'South Dakota',
-      value: 'South Dakota'
-    },
-    {
-      object: 'Tennessee',
-      value: 'Tennessee'
-    },
-    {
-      object: 'Texas',
-      value: 'Texas'
-    },
-    {
-      object: 'Utah',
-      value: 'Utah'
-    },
-    {
-      object: 'Vermont',
-      value: 'Vermont'
-    },
-    {
-      object: 'Virginia',
-      value: 'Virginia'
-    },
-    {
-      object: 'Washington',
-      value: 'Washington'
-    },
-    {
-      object: 'Washington DC',
-      value: 'Washington DC'
-    },
-    {
-      object: 'West Virginia',
-      value: 'West Virginia'
-    },
-    {
-      object: 'Wisconsin',
-      value: 'Wisconsin'
-    },
-    {
-      object: 'Wyoming',
-      value: 'Wyoming'
+      value: "4c",
+      label: "4c"
     }
-    ]
- 
-    const handleSubmit = e => {
-      e.preventDefault()
-      setQ({
-        username: "",
-        password: "",
-        email: "",
-        location: "",
-        hair_type: ""
-      })
+  ];
+  const states = [
+    {
+      label: "Alabama",
+      value: "Alabama"
+    },
+    {
+      label: "Alaska",
+      value: "Alaska"
+    },
+    {
+      label: "Arizona",
+      value: "Arizona"
+    },
+    {
+      label: "Arkansas",
+      value: "Arkansas"
+    },
+    {
+      label: "California",
+      value: "California"
+    },
+    {
+      label: "Colorado",
+      value: "Colorado"
+    },
+    {
+      label: "Connecticut",
+      value: "Connecticut"
+    },
+    {
+      label: "Delaware",
+      value: "Delaware"
+    },
+    {
+      label: "Georgia",
+      value: "Georgia"
+    },
+    {
+      label: "Hawaii",
+      value: "Hawaii"
+    },
+    {
+      label: "Idaho",
+      value: "Idaho"
+    },
+    {
+      label: "Illinois",
+      value: "Illinois"
+    },
+    {
+      label: "Indiana",
+      value: "Indiana"
+    },
+    {
+      label: "Iowa",
+      value: "Iowa"
+    },
+    {
+      label: "Kansas",
+      value: "Kansas"
+    },
+    {
+      label: "Kentucky",
+      value: "Kentucky"
+    },
+    {
+      label: "Louisiana",
+      value: "Louisiana"
+    },
+    {
+      label: "Maine",
+      value: "Maine"
+    },
+    {
+      label: "Maryland",
+      value: "Maryland"
+    },
+    {
+      label: "Massachusets",
+      value: "Massachusets"
+    },
+    {
+      label: "Michigan",
+      value: "Michigan"
+    },
+    {
+      label: "Minnesota",
+      value: "Minnesota"
+    },
+    {
+      label: "Mississippi",
+      value: "Mississippi"
+    },
+    {
+      label: "Misouri",
+      value: "Misouri"
+    },
+    {
+      label: "Montana",
+      value: "Montana"
+    },
+    {
+      label: "Nebraska",
+      value: "Nebraska"
+    },
+    {
+      label: "Nevada",
+      value: "Nevada"
+    },
+    {
+      label: "New Hamphire",
+      value: "New Hampshire"
+    },
+    {
+      label: "New Jersey",
+      value: "New Jersey"
+    },
+    {
+      label: "New Mexico",
+      value: "New Mexico"
+    },
+    {
+      label: "New York",
+      value: "New York"
+    },
+    {
+      label: "North Carolina",
+      value: "NorthCarolina"
+    },
+    {
+      label: "North Dakota",
+      value: "North Dakota"
+    },
+    {
+      label: "Ohio",
+      value: "Ohio"
+    },
+    {
+      label: "Oklahoma",
+      value: "Oklahoma"
+    },
+    {
+      label: "Oregon",
+      value: "Oregon"
+    },
+    {
+      label: "Pennsylvania",
+      value: "Pensylvania"
+    },
+    {
+      label: "Rhode Island",
+      value: "Rhode Island"
+    },
+    {
+      label: "South Carolina",
+      value: "South Carolina"
+    },
+    {
+      label: "South Dakota",
+      value: "South Dakota"
+    },
+    {
+      label: "Tennessee",
+      value: "Tennessee"
+    },
+    {
+      label: "Texas",
+      value: "Texas"
+    },
+    {
+      label: "Utah",
+      value: "Utah"
+    },
+    {
+      label: "Vermont",
+      value: "Vermont"
+    },
+    {
+      label: "Virginia",
+      value: "Virginia"
+    },
+    {
+      label: "Washington",
+      value: "Washington"
+    },
+    {
+      label: "Washington DC",
+      value: "Washington DC"
+    },
+    {
+      label: "West Virginia",
+      value: "West Virginia"
+    },
+    {
+      label: "Wisconsin",
+      value: "Wisconsin"
+    },
+    {
+      label: "Wyoming",
+      value: "Wyoming"
     }
+  ];
 
-    const handleChange = e => {
-      setQ({ ...q, [e.target.name]: e.target.value })
-    }
+  const handleSubmit = e => {
+    e.preventDefault();
+    setQ({
+      username: "",
+      password: "",
+      email: "",
+      location: "",
+      hair_type: ""
+    });
+  };
+
+  const handleChange = e => {
+    setQ({ ...q, [e.target.name]: e.target.value });
+  };
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <div className={classes.paper}>
-          <Avatar className={classes.avatar} src={Q}>
-          </Avatar>
-          <Typography component="h1">
-            CurliQ's Registration
-          </Typography>
+          <Avatar className={classes.avatar} src={Q}></Avatar>
+          <Typography component="h1">CurliQ's Registration</Typography>
           <form className={classes.form} onSubmit={handleSubmit} noValidate>
             <TextField
               variant="outlined"
@@ -289,7 +299,7 @@ export default function SignInSide() {
               required
               fullWidth
               id="username"
-              label="User Name"
+              label="Display Name"
               name="username"
               autoFocus
               onChange={handleChange}
@@ -319,18 +329,6 @@ export default function SignInSide() {
               value={q.email}
               autoFocus
             />
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              name="location"
-              label="Location"
-              type="location"
-              id="location"
-              onChange={handleChange}
-              value={q.location}
-            />
             {/* <TextField
               variant="outlined"
               margin="normal"
@@ -341,15 +339,29 @@ export default function SignInSide() {
               type="location"
               id="location"
               onChange={handleChange}
-              value={location}
-              helperText="Choose your State">
-                {states.map(place => (
-                  <MenuItem key={place.value} value={place.value}>
-                    {place.label}
-                  </MenuItem>
-                ))}
-              </TextField> */}
-            
+              value={q.location}
+            /> */}
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              select
+              fullWidth
+              name="location"
+              label="Location"
+              type="location"
+              id="location"
+              onChange={handleChange}
+              value={q.location}
+              helperText="Choose your State"
+            >
+              {states.map(place => (
+                <MenuItem key={place.value} value={place.value}>
+                  {place.label}
+                </MenuItem>
+              ))}
+            </TextField>
+
             <TextField
               variant="outlined"
               margin="normal"
@@ -362,16 +374,14 @@ export default function SignInSide() {
               label="Hair Type"
               onChange={handleChange}
               value={q.hair_type}
-             >
-                {pattern.map(select => (
-                  <MenuItem key={select.value} value={select.value}>
-                    {select.label}
-                  </MenuItem>
-                ))}
-              </TextField>
-            
-           
-         
+            >
+              {pattern.map(select => (
+                <MenuItem key={select.value} value={select.value}>
+                  {select.label}
+                </MenuItem>
+              ))}
+            </TextField>
+
             <Button
               type="submit"
               fullWidth
@@ -383,7 +393,7 @@ export default function SignInSide() {
             </Button>
             <Grid container>
               <Grid item>
-                <Link href="#" variant="body2" >
+                <Link href="#" variant="body2">
                   {"Already have an account? Sign In"}
                 </Link>
               </Grid>
@@ -397,4 +407,3 @@ export default function SignInSide() {
     </Grid>
   );
 }
-
