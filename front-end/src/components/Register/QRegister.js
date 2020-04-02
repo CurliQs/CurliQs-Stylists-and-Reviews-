@@ -398,28 +398,3 @@ export default function SignInSide() {
   );
 }
 
-						<Button
-							type="submit"
-							fullWidth
-							variant="contained"
-							color="primary"
-							className={classes.submit}
-						>
-							Sign Up
-						</Button>
-						<Grid container>
-							<Grid item>
-								<Link href="#" variant="body2">
-									{"Already have an account? Sign In"}
-								</Link>
-							</Grid>
-						</Grid>
-						<Box mt={5}>
-							<Copyright />
-						</Box>
-					</form>
-				</div>
-			</Grid>
-		</Grid>
-	);
-}
