@@ -26,18 +26,6 @@ async function createRegimen(regimen) {
 	return getRegimenById(regimen_id);
 }
 
-// function getReviewById(review_id) {
-// 	return db("product_review")
-// 		.where({ review_id })
-// 		.select("review_id", "review", "rating", "curli_id", "qutter_id")
-// 		.first();
-// }
-
-// async function createReview(review) {
-// 	const [review_id] = await db("product_review").insert(review, "review_id");
-// 	return getReviewById(review_id);
-// }
-
 async function updateRegimen(curli_id, updates) {
 	await db("regimen")
 		.where({ curli_id })

@@ -1,9 +1,9 @@
 const db = require("../../../database/dbConfig");
 
+
 module.exports = {
 	getReviews,
 	getReviewById,
-	// getByUsername,
 	createReview,
 	updateReview,
 	removeReview

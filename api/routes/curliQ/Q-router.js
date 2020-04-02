@@ -2,10 +2,21 @@ const router = require("express").Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
+const authenticate = require("../../authenticate-middleware")
+
+const {
+	verifyCurli,
+	verifyCurliRegister
+// 	// verifyReview,
+// 	// verifyLogin,
+// 	// verifyReviewData,
+// 	// verifyCustomerUsername
+} = require('../../middleware');
+
 const Qs = require("./Q-model");
 const Regimen = require("./regimen-model");
 
-router.post("/register", async (req, res) => {
+router.post("/register", verifyCurliRegister, async (req, res) => {
 	let curliQ = req.body;
 	const hash = bcrypt.hashSync(curliQ.password, 12);
 	curliQ.password = hash;
@@ -20,7 +31,7 @@ router.post("/register", async (req, res) => {
 		});
 });
 
-router.post("/login", (req, res) => {
+router.post("/login", verifyCurli, (req, res) => {
 	let { username, password } = req.body;
 
 	Qs.getByUsername({ username })
@@ -43,21 +54,23 @@ router.post("/login", (req, res) => {
 		});
 });
 
-router.get("/", (req, res) => {
+router.get("/", authenticate, (req, res) => {
 	Qs.get()
 		.then(customer => res.status(200).json(customer))
 		.catch(err => res.status(500).json(err));
 });
 
-router.get("/:id", (req, res) => {
+router.get("/:id", authenticate, (req, res) => {
 	let { id } = req.params;
-
+console.log('helo', authenticate)
 	Qs.getById(id)
 		.then(customer => res.status(200).json(customer))
-		.catch(err => res.status(500).json(err));
+		.catch(err => 
+			{console.log("heythere",err)
+			res.status(500).json(err)});
 });
 
-router.put("/:id", (req, res) => {
+router.put("/:id", authenticate, (req, res) => {
 	let { id } = req.params;
 	let update = req.body;
 	Qs.update(id, update)
@@ -65,21 +78,21 @@ router.put("/:id", (req, res) => {
 		.catch(err => res.status(500).json(err));
 });
 
-router.delete("/:id", (req, res) => {
+router.delete("/:id", authenticate, (req, res) => {
 	let { id } = req.params;
 	Qs.remove(id)
 		.then(user => res.status(201).json(user))
 		.catch(err => res.status(500).json(err));
 });
 
-router.get("/:id/regimen", (req, res) => {
+router.get("/:id/regimen", authenticate, (req, res) => {
 	let { id } = req.params;
 	Regimen.getRegimen(id)
 		.then(regimen => res.status(200).json(regimen))
 		.catch(err => res.status(500).json(err));
 });
 
-router.post("/:curli_id/regimen", (req, res) => {
+router.post("/:curli_id/regimen", authenticate, (req, res) => {
 	let { curli_id } = req.params;
 	let regimen = req.body;
 	let data = { ...regimen, curli_id };
@@ -88,7 +101,7 @@ router.post("/:curli_id/regimen", (req, res) => {
 		.catch(err => res.status(500).json(err));
 });
 
-router.put("/:id/regimen", (req, res) => {
+router.put("/:id/regimen", authenticate, (req, res) => {
 	let { id } = req.params;
 	let updates = req.body;
 	Regimen.updateRegimen(id, updates)
@@ -96,16 +109,16 @@ router.put("/:id/regimen", (req, res) => {
 		.catch(err => res.status(500).json(err));
 });
 
-router.delete("/:id/regimen", (req, res) => {
+router.delete("/:id/regimen", authenticate, (req, res) => {
 	let { id } = req.params;
 	Regimen.removeRegimen(id)
 		.then(user => res.status(201).json(user))
 		.catch(err => res.status(500).json(err));
 });
 
-const signToken = user => {
+const signToken = curliq => {
 	const payload = {
-		username: user.username
+		username: curliq.username
 	};
 
 	const secret = process.env.JWT_SECRET || "FLCL is not rewatchable. Fight me.";

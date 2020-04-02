@@ -24,10 +24,6 @@ server.get("/", (req, res) => {
 	res.status(200).json({ status: "I'm alive and on fire :fireball:" });
 });
 
-// server.get("/reviews", (req, res) => {
-// 	res.status(200).json({ status: "I'm alive and on fire..reviewsbb :fireball:" });
-// });
-
 
 server.get("*", (req, res) => {
 	res.sendFile(path.join(__dirname + "/front-end/build/index.html"));
