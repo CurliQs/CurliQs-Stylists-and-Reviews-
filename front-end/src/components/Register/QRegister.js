@@ -23,7 +23,7 @@ import useStylesReg from "../../Styling/RegForm";
 import Copyright from "../../Styling/Copyright";
 import Q from "../../img/tQ.png";
 
-export default function SignInSide() {
+function QRegister() {
   const classes = useStylesReg();
   const [q, setQ] = useState({
     username: "",
@@ -270,7 +270,7 @@ export default function SignInSide() {
     }
   ];
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
     setQ({
       username: "",
@@ -407,3 +407,5 @@ export default function SignInSide() {
     </Grid>
   );
 }
+
+export default QRegister;

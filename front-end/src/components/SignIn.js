@@ -16,7 +16,7 @@ import useStylesSides from "../Styling/SideForm";
 import Copyright from "../Styling/Copyright";
 import Q from "../img/oQ.png";
 
-export default function SignInSide() {
+export default function SignIn() {
   const classes = useStylesSides();
   const [inputs, setInputs] = useState({
     email: "",
