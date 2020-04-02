@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import {
   AppBar,
@@ -39,7 +40,7 @@ export default function ButtonAppBar() {
           <Typography variant="h6" className={classes.title}>
             Curli~Q's Styles'n'Reviews
           </Typography>
-          <NavLink to="/register">
+          <NavLink to="/signin">
             <Button color="inherit">Signin</Button>
           </NavLink>
           <NavLink to="/register">
